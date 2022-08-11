@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath} 
+\usepackage{amssymb}
+\usepackage{fancyhdr, graphicx}
+
+\fancypagestyle{logo}{
+\fancyhf{}
+\fancyhead[LE,LO]{\includegraphics[scale=.3]{../MTRI_logo.pdf}}}
+\pagestyle{logo}
+
+\title{Pad\'{e} Reformulations and Proof of Monotonicity}
+\author{Nathan Willey}
+\date{June 2022}
+
+\begin{document}
+	
+	\maketitle{}
+	
+	The goal of this short memo is to reformulate the equations for Pad\'{e} splines with continuous second derivatives to be a function of the endpoints and control point as well as to prove the monotonicity these functions guarantee.\\
+	
+	From (1.18), the restrictions leading to (1.29) and (1.30) (notably $s_1(0) = 0$, $s_2(1) = 1$), and enforcing a continuous second derivative at $(x_c, y_c)$ we can write the Pad\'{e} spline with fixed endpoints $(0,0), (1,1)$ as a function of the parameters $(x_c, y_c)$ by substituting in (1.32) and simplifying. \\
+	In requiring $s_1^i(x_c) = s_2^i(x_c) \ i \in {0,1,2}$ we create a system of three equations for each function which can be solved for the three unknowns $a_{0i}, a_{1i}, b_{bi}$ yielding the solution $s_1(x) \equiv s_2(x)$, a single Pad\'{e} approximant. This spline is \textit{consistent} with the solution of the system found by requiring a single Pad\'{e} approximant to have the 2 endpoints and midpoint (a single Pad\'{e} approximant has continuous derivatives). \\ Thus we find the following equations over $[0,1]$:
+	
+	\[s(x) = \frac{(x_c - 1) y_c x}{x_c(y_c - 1) + x(x_c - y_c)}\]
+	
+	\[s'(x) = \frac{(x_c - 1)x_c(y_c-1)y_c}{[(y_c-x_c)x - x_c(y_c-1)]^2}\]
+	
+	
+	The signs of the derivatives are entirely dependent on the sign of the numerator. Noting again that here we chose $(0,0)$ and $(1,1)$ as endpoints, it is clear that we have a positive derivative when $x \in (0,1) \implies s(x)$ monotonically increasing. \\
+	
+	
+	Now we can perform a similar analysis, but without the assumptions on the endpoints of our Pad\'{e} spline. We use the following 6 constraints to write our Pad\'{e} spline as a function of the parameters $\{x_0, y_0, x_c, y_c, x_f, y_f\}$, where $(x_0, y_0)$ and $(x_f, y_f)$ are our endpoints. We again enforce continuity of the second derivative at our control point.
+	
+	\begin{align}
+		s_1(x_0) = y_0 \\
+		s_2(x_f) = y_f \\ 
+		s_1(x_c) = y_c \\
+		s_2(x_c) = y_c \\ 
+		s_1'(x_c) = s_2'(x_c) \\ 
+		s_1''(x_c) = s_2''(x_c) 
+	\end{align}
+
+		As before, our solution in a single Pad\'{e} approximant with the equivalent conditions: 
+	
+	\begin{align}
+		s(x_0) = y_0 \\
+		s(x_c) = y_c \\
+		s(x_f) = y_f \\ 
+	\end{align}
+	
+	Plugging in these constraints and solving for the spline using our new set of parameters we arrive at the following formulation:
+	
+	
+	\tiny
+	\[
+	\hss
+	s(x) = \frac{x\,x_{0}\,y_{0}\,y_{c}-x\,x_{0}\,y_{0}\,y_{f}-x\,x_{c}\,y_{0}\,y_{c}+x_{0}\,x_{c}\,y_{0}\,y_{f}-x_{0}\,x_{f}\,y_{0}\,y_{c}+x\,x_{f}\,y_{0}\,y_{f}+x\,x_{c}\,y_{c}\,y_{f}-x_{0}\,x_{c}\,y_{c}\,y_{f}+x_{c}\,x_{f}\,y_{0}\,y_{c}-x\,x_{f}\,y_{c}\,y_{f}+x_{0}\,x_{f}\,y_{c}\,y_{f}-x_{c}\,x_{f}\,y_{0}\,y_{f}}{x\,x_{0}\,y_{c}-x\,x_{c}\,y_{0}+x_{0}\,x_{c}\,y_{0}-x\,x_{0}\,y_{f}+x\,x_{f}\,y_{0}-x_{0}\,x_{f}\,y_{0}-x_{0}\,x_{c}\,y_{c}+x\,x_{c}\,y_{f}-x\,x_{f}\,y_{c}+x_{0}\,x_{f}\,y_{f}+x_{c}\,x_{f}\,y_{c}-x_{c}\,x_{f}\,y_{f}}
+	\hss
+	\]
+	
+	\[
+	\hss
+	s'(x) = \frac{\left(x_\text{c}-x_0\right)\left(x_\text{f}-x_0\right)\left(x_\text{f}-x_\text{c}\right)\left(y_\text{c}-y_0\right)\left(y_\text{f}-y_0\right)\left(y_\text{f}-y_\text{c}\right)}{\left(\left(\left(x_\text{c}-x_0\right)y_\text{f}-\left(x_\text{f}-x_0\right)y_\text{c}+\left(x_\text{f}-x_\text{c}\right)y_0\right)x-\left(x_\text{c}-x_0\right)x_\text{f}y_\text{f}+x_\text{c}\cdot\left(x_\text{f}-x_0\right)y_\text{c}-x_0\cdot\left(x_\text{f}-x_\text{c}\right)y_0\right)^2}
+	\hss
+	\]
+
+	
+	\normalsize 
+	
+	As an aside, it is worth noting in both this case and the previous one that the splines are highly nonlinear in their coefficients.\\
+	From the explicit derivatives above, we see something very similar to the derivatives of the fixed-endpoint splines; The sign of the derivative is dependent only on the numerator. Let us assume the following sequences are monotonic: $(x_0, x_c, x_f), (y_0, y_c, y_f)$. Then given immediately is monotonicity of the Pad\'{e} splines defined by these sequences.
+	
+	Thus, if we assume the sequence $(x_0, x_c, x_f)$ is defined to be monotonic increasing, Pad\'{e} splines defined as in (1.18) are monotonic iff the sequence $(y_0, y_c, y_f)$ is monotonic. $\blacksquare$
+	
+	\footnote{ Fixed endpoint Pad\'{e} spline visualization {https://www.desmos.com/calculator/xthg1woqok}}
+\end{document}

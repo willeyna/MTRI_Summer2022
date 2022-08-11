@@ -1,0 +1,13 @@
+\contentsline {section}{\numberline {1}Method}{2}%
+\contentsline {subsection}{\numberline {1.1}Problem Description}{2}%
+\contentsline {subsection}{\numberline {1.2}Choosing $T$}{2}%
+\contentsline {subsection}{\numberline {1.3}Choosing $T(y_\text {isom})$}{2}%
+\contentsline {subsubsection}{\numberline {1.3.1}Re-mapping Based on Jacobian's Condition Number}{3}%
+\contentsline {subsubsection}{\numberline {1.3.2}Continuous Re-mapping}{3}%
+\contentsline {subsection}{\numberline {1.4}Mappings and Propagated Gradient}{5}%
+\contentsline {section}{\numberline {2}Results}{6}%
+\contentsline {subsection}{\numberline {2.1}Spherical Non-Differentiability}{6}%
+\contentsline {subsection}{\numberline {2.2}Pad\'{e} Remapping Difficulties}{6}%
+\contentsline {subsection}{\numberline {2.3}Condition Number Calculations}{7}%
+\contentsline {section}{\numberline {3}Current State/ To Do}{9}%
+\contentsline {subsection}{\numberline {3.1}To Do:}{9}%
